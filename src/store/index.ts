@@ -8,7 +8,7 @@ export const store = configureStore({
     // Add your reducers here
     [authAPI.reducerPath]: authAPI.reducer,
     [productsAPI.reducerPath]: productsAPI.reducer,
-    [userAPI.reducerPath]: userAPI.reducer,
+    // [userAPI.reducerPath]: userAPI.reducer,
   }),
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

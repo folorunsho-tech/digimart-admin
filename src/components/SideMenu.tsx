@@ -10,18 +10,12 @@ import SettingsIcon from "@mui/icons-material/Settings";
 type Props = {
   handleDrawerToggle: () => void;
   mobileOpen: boolean;
+  // stores: [any];
 };
-const stores = [
-  {
-    id: "Store1",
-  },
-  {
-    id: "Store2",
-  },
-];
+
 const SideMenu = ({ handleDrawerToggle, mobileOpen }: Props) => {
   const matches = useMediaQuery("(min-width:760px)");
-  const [selected, setSelected] = React.useState(stores[0].id);
+  const [selected, setSelected] = React.useState("");
 
   const handleChange = (event: SelectChangeEvent) => {
     setSelected(event.target.value);
@@ -127,7 +121,6 @@ const SideMenu = ({ handleDrawerToggle, mobileOpen }: Props) => {
     <>
       {matches ? (
         <DesktopDrawer
-          stores={stores}
           handleChange={handleChange}
           selected={selected}
           menu={menu}
@@ -138,7 +131,6 @@ const SideMenu = ({ handleDrawerToggle, mobileOpen }: Props) => {
         <MobileDrawer
           handleDrawerToggle={handleDrawerToggle}
           mobileOpen={mobileOpen}
-          stores={stores}
           handleChange={handleChange}
           selected={selected}
           menu={menu}

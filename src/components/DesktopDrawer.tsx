@@ -12,9 +12,6 @@ import LaunchIcon from "@mui/icons-material/Launch";
 type Props = {
   selected: string;
   handleChange: (event: SelectChangeEvent) => void;
-  stores: {
-    id: string;
-  }[];
   menu: {
     name: string;
     icon: JSX.Element;
@@ -35,7 +32,6 @@ type Props = {
 };
 const drawerWidth = 220;
 const DesktopDrawer = ({
-  stores,
   selected,
   handleChange,
   menu,
@@ -62,11 +58,7 @@ const DesktopDrawer = ({
       >
         <nav className="p-4 py-6 ">
           <h1 className="text-xl font-bold italic">Digimart</h1>
-          <StoreSelect
-            stores={stores}
-            handleChange={handleChange}
-            selected={selected}
-          />
+          <StoreSelect handleChange={handleChange} selected={selected} />
 
           <h3 className="my-2 w-full">
             <NavLink

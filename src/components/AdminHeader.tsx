@@ -7,8 +7,15 @@ import { deepPurple } from "@mui/material/colors";
 type Props = {
   handleDisplay: (display: string) => void;
   display: string;
+  photoUrl: string;
+  displayName: string;
 };
-const AdminHeader = ({ handleDisplay, display }: Props) => {
+const AdminHeader = ({
+  handleDisplay,
+  display,
+  photoUrl,
+  displayName = "",
+}: Props) => {
   return (
     <>
       <button
@@ -18,15 +25,15 @@ const AdminHeader = ({ handleDisplay, display }: Props) => {
         }}
       >
         <Avatar
-          alt="Remy Sharp"
-          // src="/broken-image.jpg"
+          alt={displayName || ""}
+          src={photoUrl || ""}
           sx={{ bgcolor: deepPurple[500] }}
         >
-          FI
+          {displayName[0]?.toUpperCase()}
         </Avatar>
       </button>
       {display === "accounts" && (
-        <div className="absolute top-14 bg-gray-100 z-50 w-max h-auto shadow-sm rounded-sm font-semibold border-t-2 pt-2 divide-y-2 overflow-y-auto divide-gray-400">
+        <div className="cursor-pointer absolute top-14 bg-gray-100 z-50 w-max h-auto shadow-sm rounded-sm font-semibold border-t-2 pt-2 divide-y-2 overflow-y-auto divide-gray-400">
           <h3 className="flex items-center gap-4 hover:bg-white p-3">
             <ManageAccountsIcon /> Manage Accounts
           </h3>

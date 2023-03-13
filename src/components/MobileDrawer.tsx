@@ -18,7 +18,7 @@ type Props = {
   handleChange: (event: SelectChangeEvent) => void;
   handleDrawerToggle: () => void;
   mobileOpen: boolean;
-  stores: { id: string }[];
+
   menu: {
     name: string;
     icon: JSX.Element;
@@ -42,7 +42,6 @@ type Props = {
 const MobileDrawer = ({
   handleDrawerToggle,
   mobileOpen,
-  stores,
   selected,
   handleChange,
   menu,
@@ -93,11 +92,7 @@ const MobileDrawer = ({
         >
           <nav className="p-4 space-y-4">
             <h1 className="text-xl font-bold italic">Digimart</h1>
-            <StoreSelect
-              stores={stores}
-              handleChange={handleChange}
-              selected={selected}
-            />
+            <StoreSelect handleChange={handleChange} selected={selected} />
             <h3 className="my-3">
               <NavLink
                 to={`/admin/${selected}/home`}

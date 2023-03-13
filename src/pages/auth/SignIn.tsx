@@ -2,6 +2,10 @@ import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import SyncIcon from "@mui/icons-material/Sync";
 import { useLogInMutation } from "../../store/services/auth";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../store";
+import { setStores } from "../../store/slices/stores";
+import { setUser } from "../../store/slices/user";
 import { useNavigate } from "react-router-dom";
 type Inputs = {
   email: string;
@@ -10,6 +14,9 @@ type Inputs = {
 
 const SignIn = () => {
   const [signIn, results] = useLogInMutation();
+  const dispatch = useDispatch();
+  const stores = useSelector((state: RootState) => state.stores);
+
   const navigate = useNavigate();
   const {
     register,
@@ -21,6 +28,10 @@ const SignIn = () => {
   };
 
   React.useEffect(() => {
+    !results.isLoading &&
+      results.isSuccess &&
+      dispatch(setUser(results.data?.user));
+
     !results.isLoading && results.isSuccess && navigate(results.data?.redirect);
   }, [results.data]);
   return (

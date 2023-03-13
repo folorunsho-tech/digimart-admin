@@ -17,7 +17,9 @@ type Props = {
     }[];
   }[];
   baseUrl: string;
-  handleClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  handleClick?: (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => void;
 };
 export default function MenuAccordion({ selected, menu, handleClick }: Props) {
   const [expanded, setExpanded] = React.useState<string | false>(false);

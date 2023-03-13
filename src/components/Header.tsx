@@ -9,13 +9,13 @@ import DesktopSearch from "./DesktopSearch";
 
 type Props = {
   handleDrawerToggle: () => void;
+  user: any;
 };
-const Header = ({ handleDrawerToggle }: Props) => {
+const Header = ({ handleDrawerToggle, user }: Props) => {
   const matches = useMediaQuery("(min-width:760px)");
   const { pathname } = useLocation();
   const currentPath = pathname.split("/")[3];
   const [display, setDisplay] = React.useState<string>("");
-  const [open, setOpen] = React.useState<boolean>(false);
   const handleDisplay = (display: string) => {
     setDisplay(display);
   };
@@ -44,6 +44,7 @@ const Header = ({ handleDrawerToggle }: Props) => {
       document.removeEventListener("keydown", handleEsc);
     };
   }, [handleDisplay]);
+
   return (
     <header className="flex gap-6 items-center px-4 pb-6">
       {!matches && (
@@ -58,7 +59,12 @@ const Header = ({ handleDrawerToggle }: Props) => {
       <section className="ml-4 sm:ml-8 lg:ml-12 flex items-center gap-8 justify-end w-full relative">
         {!matches ? <MobileSearch /> : <DesktopSearch />}
         <Notifications handleDisplay={handleDisplay} display={display} />
-        <AdminHeader handleDisplay={handleDisplay} display={display} />
+        <AdminHeader
+          handleDisplay={handleDisplay}
+          display={display}
+          photoUrl={user?.photoUrl}
+          displayName={user?.displayName}
+        />
       </section>
     </header>
   );
